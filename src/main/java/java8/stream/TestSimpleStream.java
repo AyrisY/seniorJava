@@ -1,6 +1,8 @@
-package java8;
+package java8.stream;
 
 import org.junit.Test;
+
+import java8.funcInterface.Apple;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -11,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by yangjie on 2017/8/3.
  */
-public class TestStream {
+public class TestSimpleStream {
 
     @Test
     public void filterTest(){

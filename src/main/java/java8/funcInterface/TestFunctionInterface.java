@@ -1,4 +1,4 @@
-package java8;
+package java8.funcInterface;
 
 import org.junit.Test;
 

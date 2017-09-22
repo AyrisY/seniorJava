@@ -1,4 +1,4 @@
-package java8;
+package java8.funcInterface;
 
 /**
  * Created by yangjie on 2017/8/1.

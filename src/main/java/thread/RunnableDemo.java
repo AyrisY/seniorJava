@@ -7,6 +7,12 @@ public class RunnableDemo {
         abRunnable.run();   //直接在主线程执行
         Thread thread=new Thread(abRunnable);
         thread.start();     //新建一个子线程执行
+        new Runnable(){
+            @Override
+            public void run(){
+                System.out.println("匿名内部类执行");
+            }
+        }.run();
     }
 
 }

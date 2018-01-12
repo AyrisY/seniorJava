@@ -1,0 +1,9 @@
+#set($greet='hello')
+$greet $name
+
+#foreach($i in $list)
+    $i
+#end
+
+$greet $name
+

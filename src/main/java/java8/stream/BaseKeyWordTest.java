@@ -3,6 +3,7 @@ package java8.stream;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,7 +13,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by yangjie on 2017/9/12.
@@ -26,6 +27,8 @@ public class BaseKeyWordTest {
         pl.add(new Person("Alian",28,"man",188));
         pl.add(new Person("Moniok",22,"girl",175));
         pl.add(new Person("Flora",33,"woman",170));
+        pl.add(new Person("Flora2",55,"woman",170));
+        pl.add(new Person("Alian2",28,"man",188));
 
     }
 
@@ -260,6 +263,50 @@ public class BaseKeyWordTest {
         Stream.iterate(0,n->n+2).limit(5).forEach(System.out::print);
         System.out.println();
         Stream.iterate(1,n->n*3).limit(5).forEach(System.out::print);
+
+    }
+
+    /**
+     * 收集器操作的都是集合,处理后返回的也是集合中的一条数据,而不是一个简单的结果
+     * */
+    @Test
+    public void collectResult(){
+        System.out.println("--------------收集器使用");
+        System.out.println("--------------1.分组");
+        Map<String,List<Person>> groupList = pl.stream().collect(groupingBy(Person::getSex));
+        Iterator iterator=groupList.keySet().iterator();
+        while(iterator.hasNext()){
+            String sex=(String)iterator.next();
+            System.out.println("--------------sex="+sex);
+            groupList.get(sex).stream().forEach(System.out::println);
+        }
+
+        System.out.println("------------2.统计");
+        DoubleSummaryStatistics iss = pl.stream().collect(summarizingDouble(Person::getAge));
+        System.out.println("总人数:"+iss.getCount());
+        System.out.println("平均年龄:"+iss.getAverage());
+        System.out.println("最大年龄:"+iss.getMax());
+        System.out.println("最小年龄:"+iss.getMin());
+        System.out.println("总年龄:"+iss.getSum());
+
+        System.out.println("---------数字的精度处理");
+        System.out.println(new BigDecimal(28.834).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+        System.out.println(new BigDecimal(28.836).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+        System.out.println(new BigDecimal(28.834).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue());
+        System.out.println(new BigDecimal(28.836).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue());
+        System.out.println(new BigDecimal(28.835).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+        System.out.println(new BigDecimal(28.85).setScale(1,BigDecimal.ROUND_HALF_DOWN).doubleValue());
+
+        System.out.println(new BigDecimal(28.835).setScale(2,BigDecimal.ROUND_UP).doubleValue());
+        System.out.println(new BigDecimal(28.835).setScale(2,BigDecimal.ROUND_DOWN).doubleValue());
+
+        System.out.println("------------3.求最大,最小,总数");
+        System.out.println(pl.stream().collect(maxBy(Comparator.comparing(Person::getAge))));;
+        System.out.println(pl.stream().collect(minBy(Comparator.comparing(Person::getAge))));;
+        System.out.println(pl.stream().collect(counting()));;
+
+        System.out.println("------------4.连接字符串");
+        System.out.println(pl.stream().map(Person::getName).collect(joining(",")));
 
     }
 

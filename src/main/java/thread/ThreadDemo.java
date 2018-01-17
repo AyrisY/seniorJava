@@ -1,6 +1,8 @@
 package thread;
 
-
+/**
+ * @author yangjie
+ * */
 public class ThreadDemo {
 
     public static void main(String[] args) {
@@ -19,6 +21,7 @@ class AbThread extends Thread{
 
         try {
             Thread.sleep(1000);
+            System.out.println("after sleep:");
         }catch (Exception e){
             e.printStackTrace();
         }

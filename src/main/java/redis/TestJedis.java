@@ -100,7 +100,9 @@ public class TestJedis {
         //set if not exist
         System.out.println("jedis setnx result:"+jedis.setnx("foo","321"));
         System.out.println("jedis setnx result:"+jedis.setnx("foo2","foo2"));
+        //设置超时时间，查询剩余有效时间
         System.out.println("jedis setnx expire result:"+jedis.setex("foo3",5,"foo3"));
+        System.out.println("jedis expire ttl time:"+jedis.ttl("foo3"));
         System.out.println("foo:\t"+jedis.get("foo"));
         System.out.println("foo2:\t"+jedis.get("foo2"));
         System.out.println("foo3:\t"+jedis.get("foo3"));

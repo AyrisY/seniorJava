@@ -43,5 +43,6 @@ public class PassWordUtils {
         List<Integer> useCases = new ArrayList<>();
         Collections.addAll(useCases, 47, 48, 49, 50);
         trackUseCase(useCases, PassWordUtils.class);
+        System.out.println("---------------");
     }
 }

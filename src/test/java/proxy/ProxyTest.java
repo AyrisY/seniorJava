@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /**
  * Created 2017/6/7
- * @author yangjie 
+ * @author yangjie
  */
 public class ProxyTest {
 

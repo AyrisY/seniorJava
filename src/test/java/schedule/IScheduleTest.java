@@ -1,11 +1,6 @@
 package schedule;
 
-import com.taobao.pamirs.schedule.strategy.TBScheduleManagerFactory;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Iterator;
 
 /**
  * @author yangjie
@@ -15,20 +10,7 @@ import java.util.Iterator;
 public class IScheduleTest {
 
     public static void main(String[] args) {
-        ApplicationContext context=new ClassPathXmlApplicationContext("spring-config.xml");
 
-        TBScheduleManagerFactory factory=(TBScheduleManagerFactory)context.getBean("scheduleManagerFactory");
-        try {
-            factory.init();
-
-            Iterator iterator= factory.getZkConfig().entrySet().iterator();
-            while(iterator.hasNext()){
-                System.out.println(iterator.next());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 

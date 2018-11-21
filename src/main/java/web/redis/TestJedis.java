@@ -82,7 +82,7 @@ public class TestJedis {
 
         jedis.set("foo","redis—pool");
         System.out.println(jedis.get("foo"));
-        jp.returnResource(jedis);
+        jp.destroy();
     }
 
     /**

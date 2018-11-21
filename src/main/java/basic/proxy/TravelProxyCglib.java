@@ -14,6 +14,9 @@ public class TravelProxyCglib implements MethodInterceptor{
 
     private Object target;
 
+    /**
+     * cglib原理是生成被代理类的子类，这一步动态生成一个子类
+     * */
     public Object getInstance(Object target){
         this.target=target;
         Enhancer enhancer=new Enhancer();
@@ -22,10 +25,14 @@ public class TravelProxyCglib implements MethodInterceptor{
         return enhancer.create();
     }
 
+    /**
+     * 所有的被代理类都会在这里被拦截，实现了CallBack接口
+     * */
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         Object result;
         System.out.println("cglib proxy begin");
+        System.out.println("cglib proxy method:"+method.getName());
         result=method.invoke(target,objects);
         System.out.println("cglib proxy end");
         return result;

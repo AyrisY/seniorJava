@@ -33,5 +33,7 @@ public class BasicJavaTest {
             System.out.println(iterator.next());
         }
 
+        System.out.println(hashCode());
+
     }
 }

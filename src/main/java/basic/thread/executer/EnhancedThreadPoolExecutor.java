@@ -11,14 +11,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2017/12/25
  * @time 下午1:46
  */
-public class EnhancedThreadPoolExecutor extends ThreadPoolExecutor{
+public class EnhancedThreadPoolExecutor extends ThreadPoolExecutor {
 
-    private final AtomicInteger submittedTaskCount=new AtomicInteger();
+    private final AtomicInteger submittedTaskCount = new AtomicInteger();
 
     public EnhancedThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, TaskQueue workQueue) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,new ThreadPoolExecutor.AbortPolicy());
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, new ThreadPoolExecutor.AbortPolicy());
         workQueue.setExecutor(this);
-        System.out.println("core pool size:"+this.getCorePoolSize()+",max pool size:"+this.getMaximumPoolSize());
+        System.out.println("core pool size:" + this.getCorePoolSize() + ",max pool size:" + this.getMaximumPoolSize());
     }
 
     @Override
@@ -29,8 +29,8 @@ public class EnhancedThreadPoolExecutor extends ThreadPoolExecutor{
             super.execute(command);
 
         } catch (RejectedExecutionException e) {
-            BlockingQueue<Runnable> taskQueue= super.getQueue();
-            if(taskQueue instanceof TaskQueue) {
+            BlockingQueue<Runnable> taskQueue = super.getQueue();
+            if (taskQueue instanceof TaskQueue) {
                 final TaskQueue queue = (TaskQueue) taskQueue;
                 if (!queue.forceTaskIntoQueue(command)) {
                     this.shutdown();
@@ -47,12 +47,12 @@ public class EnhancedThreadPoolExecutor extends ThreadPoolExecutor{
 
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
-        super.afterExecute(r,t);
+        super.afterExecute(r, t);
         submittedTaskCount.decrementAndGet();
-        System.out.println("当前已提交任务数目："+this.getSubmittedTaskCount()+",当前线程ID："+Thread.currentThread().getId());
+        System.out.println("当前已提交任务数目：" + this.getSubmittedTaskCount() + ",当前线程ID：" + Thread.currentThread().getId());
     }
 
-    public int getSubmittedTaskCount(){
+    public int getSubmittedTaskCount() {
         return this.submittedTaskCount.get();
     }
 

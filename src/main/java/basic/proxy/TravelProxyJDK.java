@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
  * Created 2017/6/7
  * @author yangjie
  */
-public class TravelProxy implements InvocationHandler {
+public class TravelProxyJDK implements InvocationHandler {
 
     private Object target;
 
@@ -24,9 +24,9 @@ public class TravelProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object result;
-        System.out.println("代理开始...");
+        System.out.println("jdk动态代理开始...");
         result=method.invoke(target,args);
-        System.out.println("代理结束...");
+        System.out.println("jdk动态代理结束...");
         return result;
     }
 }

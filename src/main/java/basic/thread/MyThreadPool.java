@@ -53,7 +53,7 @@ public class MyThreadPool {
             pool.execute(() -> {
 //                System.out.println(Thread.currentThread().getName() + " start");
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(30000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

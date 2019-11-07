@@ -1,6 +1,6 @@
 package basic.lock;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
 
 /**

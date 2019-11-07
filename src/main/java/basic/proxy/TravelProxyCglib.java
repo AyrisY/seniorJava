@@ -29,11 +29,12 @@ public class TravelProxyCglib implements MethodInterceptor{
      * 所有的被代理类都会在这里被拦截，实现了CallBack接口
      * */
     @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         Object result;
         System.out.println("cglib proxy begin");
         System.out.println("cglib proxy method:"+method.getName());
-        result=method.invoke(target,objects);
+        result=method.invoke(target,args);
+        methodProxy.invokeSuper(obj,args);
         System.out.println("cglib proxy end");
         return result;
     }

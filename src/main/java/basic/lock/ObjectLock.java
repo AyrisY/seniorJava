@@ -21,7 +21,7 @@ public class ObjectLock {
     }
 
     public static void main(String[] args) {
-        ObjectLock objectLock = new ObjectLock();
+        final ObjectLock objectLock = new ObjectLock();
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {

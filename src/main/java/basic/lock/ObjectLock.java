@@ -11,12 +11,23 @@ public class ObjectLock {
     public synchronized void print1() {
         for (int i = 0; i < 5; i++) {
             System.out.println("print1---" + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
-    public synchronized void print2() {
+    public void print2() {
         for (int i = 0; i < 5; i++) {
             System.out.println("print2---" + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

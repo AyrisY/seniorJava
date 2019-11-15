@@ -73,15 +73,43 @@ public class ListExcise {
 
         Iterator iterator = tempList.iterator();
         while (iterator.hasNext()) {
+
             String ss = (String) iterator.next();
 
             System.out.println(ss);
 //            tempList.remove(ss);
             // 刚好删除这次元素，size变为4，当前游标也是4，下次就不会执行，也就不会输出eee
             if ("ddd".equalsIgnoreCase(ss)) {
-                tempList.remove(ss);
+//                tempList.remove(ss);
             }
         }
+
+    }
+
+    @Test
+    public void testCompare() {
+        List numList = new ArrayList();
+        numList.add(9);
+        numList.add(3);
+        numList.add(16);
+        numList.add(-1);
+        numList.add(9);
+
+        System.out.println(numList);
+
+        Collections.sort(numList);
+        System.out.println(numList);
+
+        Collections.sort(numList, new Comparator<Integer>() {
+
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return -1;
+//                return o2.compareTo(o1);
+            }
+        });
+
+        System.out.println(numList);
 
     }
 

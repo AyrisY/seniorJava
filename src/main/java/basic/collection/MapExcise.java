@@ -29,6 +29,7 @@ public class MapExcise {
     @Test
     public void testHash() {
         System.out.println("111".hashCode());
+        System.out.println(new Object().hashCode());
     }
 
     @Test

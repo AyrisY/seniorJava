@@ -2,7 +2,6 @@ package basic.thread;
 
 import org.junit.Test;
 
-import java.util.Random;
 import java.util.concurrent.*;
 
 /**
@@ -47,40 +46,25 @@ public class MyThreadPool {
     @Test
     public void createThreadPool() {
 
-        ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 5, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10), new ThreadPoolExecutor.AbortPolicy());
-        Random random = new Random(10);
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 5, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(10), new ThreadPoolExecutor.AbortPolicy());
         for (int i = 0; i < 15; i++) {
             pool.execute(() -> {
-//                System.out.println(Thread.currentThread().getName() + " start");
                 try {
-                    Thread.sleep(30000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-//                System.out.println(Thread.currentThread().getName() + " end");
             });
 
-            int currentPoolSize = pool.getPoolSize();
-            long completedTaskCount = pool.getCompletedTaskCount();
-            int queueSize = pool.getQueue().size();
-            System.out.println("currentPoolSize:" + currentPoolSize + ",completedTaskCount:" + completedTaskCount + ",queueSize:" + queueSize);
+            printThreadPoolDetail(pool);
 
         }
 
-        pool.shutdown();
-
-        int corePoolSize = pool.getCorePoolSize();
-        int maxPoolSize = pool.getMaximumPoolSize();
-        long taskCount = pool.getTaskCount();
-
         System.out.println("---------------------------------------------------------------------------");
-        System.out.println("corePoolSize:" + corePoolSize + ",maxPoolSize:" + maxPoolSize + ",taskCount:" + taskCount);
+        printThreadPoolDetail(pool);
 
         while (!pool.isTerminated()) {
-            int currentPoolSize = pool.getPoolSize();
-            long completedTaskCount = pool.getCompletedTaskCount();
-            int queueSize = pool.getQueue().size();
-            System.out.println("currentPoolSize:" + currentPoolSize + ",completedTaskCount:" + completedTaskCount + ",queueSize:" + queueSize);
+            printThreadPoolDetail(pool);
 
             try {
                 Thread.sleep(2000);
@@ -88,11 +72,35 @@ public class MyThreadPool {
                 e.printStackTrace();
             }
 
+            if (pool.getQueue().size() == 0) {
+                break;
+            }
+
         }
+
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        this.printThreadPoolDetail(pool);
+
+        pool.shutdown();
+
+        this.printThreadPoolDetail(pool);
 
         System.out.println("thread pool is shutdown");
 
         return;
+    }
+
+    private void printThreadPoolDetail(ThreadPoolExecutor pool) {
+        int currentPoolSize = pool.getPoolSize();
+        long completedTaskCount = pool.getCompletedTaskCount();
+        int queueSize = pool.getQueue().size();
+        System.out.println("currentPoolSize:" + currentPoolSize + ",completedTaskCount:" + completedTaskCount + ",queueSize:" + queueSize);
+
     }
 
     public static void main(String[] args) {

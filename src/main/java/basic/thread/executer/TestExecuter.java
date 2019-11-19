@@ -13,7 +13,7 @@ public class TestExecuter {
 
     private static final int MAX_SIZE=10;
 
-    private static final long KEEP_ALIVE_TIME=30;
+    private static final long KEEP_ALIVE_TIME=60;
 
     private static final int QUEUE_SIZE=5;
 

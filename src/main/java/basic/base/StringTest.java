@@ -2,6 +2,11 @@ package basic.base;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * @author yangjie
  * @date 2019-11-18
@@ -79,5 +84,29 @@ public class StringTest {
         System.out.println(i4 == i5);
         // true,i5+i6会进行拆箱操作，最终转化为基础类型的比较
         System.out.println(i4 == i5 + i6);
+    }
+
+    @Test
+    public void testStringCompare() {
+        List<String> names = Arrays.asList("peter", "anna", "mike", "herry");
+        Collections.sort(names);
+        System.out.println(names);
+
+        Collections.sort(names, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        });
+        System.out.println(names);
+
+        Collections.sort(names,(o1,o2)->{
+            return o2.compareTo(o1);
+        });
+        System.out.println(names);
+
+        Collections.sort(names,Comparator.comparing(String::toString));
+        System.out.println(names);
+
     }
 }

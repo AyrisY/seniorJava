@@ -19,7 +19,7 @@ public class TestFunctionInterface {
     public void DefineFunctionInterface(){
         //自定义函数式接口
         AppleInterface at=()->System.out.println("define FunctionInterface AppleInterface.");
-        at.test();
+        at.print();
     }
 
     @Test

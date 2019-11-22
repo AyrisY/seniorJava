@@ -5,5 +5,5 @@ package basic.funcInterface;
  */
 @FunctionalInterface
 public interface AppleInterface {
-    public void test();
+    public void print();
 }

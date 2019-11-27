@@ -1,16 +1,11 @@
 package basic.aspectj;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
+import org.aspectj.org.eclipse.jdt.core.dom.AfterThrowingAdviceDeclaration;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Aspect
 @Component
@@ -40,6 +35,11 @@ public class LogService {
 
         Long endTime = System.nanoTime();
         System.out.println("执行时间：" + (endTime - startTime));
+    }
+
+    @AfterThrowing(throwing = "ex", value = "execution(* basic.aspectj.ExceptionHandle.throwException(..))")
+    public void afterThrowLog(Throwable ex) {
+        System.out.println("目标方法抛出的异常：" + ex);
     }
 
 }

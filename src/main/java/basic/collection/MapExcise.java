@@ -2,6 +2,7 @@ package basic.collection;
 
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -16,6 +17,8 @@ public class MapExcise {
     @Test
     public void testSimpleMap() {
         Map map = new HashMap<>();
+        Map safeMap = Collections.synchronizedMap(map);
+
         map.put(null, "111");
         System.out.println(map.get(null));
 
@@ -50,21 +53,21 @@ public class MapExcise {
 
         //--------------
         System.out.println("------------------------");
-        int m=9;
+        int m = 9;
         System.out.println(Integer.toBinaryString(m));
-        System.out.println(Integer.toBinaryString(m>>1));
-        m=m>>>1;
+        System.out.println(Integer.toBinaryString(m >> 1));
+        m = m >>> 1;
         System.out.println(Integer.toBinaryString(m));
-        m=m>>>2;
+        m = m >>> 2;
         System.out.println(Integer.toBinaryString(m));
-        m=m>>>3;
+        m = m >>> 3;
         System.out.println(Integer.toBinaryString(m));
 
 
         System.out.println("------------------------");
-        System.out.println(5>>1);
-        System.out.println(8>>1);
-        System.out.println(8>>>1);
+        System.out.println(5 >> 1);
+        System.out.println(8 >> 1);
+        System.out.println(8 >>> 1);
     }
 
     public static void main(String[] args) {

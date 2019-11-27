@@ -38,17 +38,30 @@ public class MapExcise {
         System.out.println(Integer.toBinaryString(n));
 
         n |= n >>> 1;
-        System.out.println(n);
+        System.out.println(Integer.toBinaryString(n));
         n |= n >>> 2;
-        System.out.println(n);
+        System.out.println(Integer.toBinaryString(n));
         n |= n >>> 4;
-        System.out.println(n);
+        System.out.println(Integer.toBinaryString(n));
         n |= n >>> 8;
-        System.out.println(n);
+        System.out.println(Integer.toBinaryString(n));
         n |= n >>> 16;
-        System.out.println(n);
+        System.out.println(Integer.toBinaryString(n));
+
+        //--------------
+        System.out.println("------------------------");
+        int m=9;
+        System.out.println(Integer.toBinaryString(m));
+        System.out.println(Integer.toBinaryString(m>>1));
+        m=m>>>1;
+        System.out.println(Integer.toBinaryString(m));
+        m=m>>>2;
+        System.out.println(Integer.toBinaryString(m));
+        m=m>>>3;
+        System.out.println(Integer.toBinaryString(m));
 
 
+        System.out.println("------------------------");
         System.out.println(5>>1);
         System.out.println(8>>1);
         System.out.println(8>>>1);

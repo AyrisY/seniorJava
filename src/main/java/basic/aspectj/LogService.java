@@ -2,7 +2,6 @@ package basic.aspectj;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.org.eclipse.jdt.core.dom.AfterThrowingAdviceDeclaration;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
